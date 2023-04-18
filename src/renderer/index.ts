@@ -1,8 +1,10 @@
 import { AudioConfig, CompileConfig, Fiber, Render, } from "../types"
 import { MovieRender, } from "./movie"
+import TimeController from "../core/timeController"
 export class Renderer {
     _options: Render.Options
     _movie: MovieRender
+    _timeController: TimeController
     constructor(options: Render.Options) {
         this._options = options
         this._movie = new MovieRender({
@@ -16,7 +18,11 @@ export class Renderer {
             replayImage: options.replayImage,
             subtitleStyle: options.subtitleStyle,
             updateNextNode: options.updateNextNode,
-
+        })
+        this._timeController = new TimeController({
+            scenes: options.scenes,
+            pause: this.moviePause.bind(this),
+            play: this.movieStart.bind(this),
         })
     }
     public update(playFiberNode: Fiber.PlayFiberNode) {
@@ -46,13 +52,18 @@ export class Renderer {
     public updateSceneBackground(sceneBackground: CompileConfig.SceneBackground){
         this._movie.initSceneBackground(sceneBackground)
     }
-    public play() {
-        this._movie._startTime = Date.now()
+    public play(){
+        this._timeController.play()
+    }
+    public pause(){
+        this._timeController.pause()
+    }
+    private movieStart() {
         this._movie._backgroundAudio.play()
         this._movie._dubAudio.play()
         this._movie._videoTarget.play()
     }
-    public pause() {
+    private moviePause() {
         this._movie._backgroundAudio.pause()
         this._movie._dubAudio.pause()
         this._movie._videoTarget.pause()

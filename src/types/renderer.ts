@@ -9,6 +9,7 @@ export namespace Render {
         pauseImage: string
         replayImage: string
         subtitleStyle: CompileConfig.TextStyle,
+        scenes: CompileConfig.Scene[],
         updateNextNode: () => void
     }
 }

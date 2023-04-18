@@ -42,10 +42,16 @@ class timeController {
         this._status = "play"
         this._startTime = Date.now()
         this.timer()
+        this._options.play()
     }
     public pause() {
         this._status = "pause"
         this._currentDuration -= this._currentTime
+        console.log(this._currentTime + this._totalDuration, "totalDuration")
+        this._options.pause()
+    }
+    public stop() {
+        this._status = "stop"
     }
 }
 

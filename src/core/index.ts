@@ -30,6 +30,7 @@ class Core {
             replayImage: this._options.replayImage || "",
             subtitleStyle: this._options.movieData.scenes[0].subtitle?.style || {},
             updateNextNode: this.updateNextNode.bind(this),
+            scenes: this._options.movieData.scenes,
         })
     }
     LoadComplete() {

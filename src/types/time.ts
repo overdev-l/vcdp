@@ -4,6 +4,6 @@ export namespace timeControllerOptions {
         scenes: Array<CompileConfig.Scene>
         pause: () => void
         play: () => void
-        stop: () => void
+        stop?: () => void
     }
 }

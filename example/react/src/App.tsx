@@ -23,8 +23,8 @@ const App = () => {
         const V = new Core({
             container: "#Player",
             movieData: data as CompileConfig.MovieData,
-            videoHeight: 1080,
-            videoWidth: 1920,
+            videoHeight: 1920,
+            videoWidth: 1080,
         })
         setV(V)
     }, [])

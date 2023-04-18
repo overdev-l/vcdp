@@ -57,6 +57,10 @@ export class MovieRender {
                 callbacks: [this.resetImage.bind(this),],
             },
             {
+                eventName: "timeupdate",
+                callbacks: [this.initSubtitle.bind(this),],
+            },
+            {
                 eventName: "play",
                 callbacks: [this.startMediaAnimation.bind(this),],
             },
