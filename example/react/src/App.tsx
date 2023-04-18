@@ -13,6 +13,7 @@ import TabMenus from "./components/tabs"
 const App = () => {
     const Divider = useRef<HTMLDivElement>(null)
     const TopContainer = useRef<HTMLDivElement>(null)
+    const TopLeft = useRef<HTMLDivElement>(null)
     const BottomContainer = useRef<HTMLDivElement>(null)
     const Player = useRef<HTMLDivElement>(null)
     const [v, setV,] = useState<Core>()
@@ -55,16 +56,33 @@ const App = () => {
         console.log(data)
     }
     const handleMouseDown = () => {
-        document.addEventListener("mousemove", handleMouseMove)
-        document.addEventListener("mouseup", handleMouseUp)
+        document.addEventListener("mousemove", handleMouseMoveY)
+        document.addEventListener("mouseup", handleMouseUpY)
     }
-    const handleMouseMove = (event: { clientX: React.SetStateAction<number>; clientY: React.SetStateAction<number> }) => {
+    const handleMouseMoveY = (event: { clientY: React.SetStateAction<number> }) => {
         TopContainer.current!.style!.height = event.clientY + "px"
     }
     
-    const handleMouseUp = () => {
-        document.removeEventListener("mousemove", handleMouseMove)
-        document.removeEventListener("mouseup", handleMouseUp)
+    const handleMouseUpY = () => {
+        document.removeEventListener("mousemove", handleMouseMoveY)
+        document.removeEventListener("mouseup", handleMouseUpY)
+    }
+
+    const handleMouseCenter = () => {
+        document.addEventListener("mousemove", handleMouseMoveX)
+        document.addEventListener("mouseup", handleMouseUpX)
+    }
+    
+    const handleMouseMoveX = (event: { clientX: string | number }) => {
+        if(event.clientX < "630" || event.clientX > "957") return
+        TopLeft.current!.style!.flex = "none"
+        TopLeft.current!.style!.width = event.clientX + "px"
+        console.log(TopLeft.current!.style!.width)
+    }
+    
+    const handleMouseUpX = () => {
+        document.removeEventListener("mousemove", handleMouseMoveX)
+        document.removeEventListener("mouseup", handleMouseUpX)
     }
     const play = () => {
         v?.play()
@@ -78,7 +96,7 @@ const App = () => {
     return (
         <div className="container">
             <div className="top layoutContainer" ref={TopContainer}>
-                <div className="topLeft">
+                <div className="topLeft"   ref={TopLeft}>
                     <TabMenus
                         Scene={Scene}
                         SceneData={data.scenes}
@@ -98,7 +116,7 @@ const App = () => {
                         replay={replay}
                     />
                 </div>
-                <div className="topDivider"></div>
+                <div className="topDivider" onMouseDown={handleMouseCenter}></div>
                 <div className="topRight">
                     <div className="player" ref={Player} id="Player"></div>
                 </div>
