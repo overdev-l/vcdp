@@ -4,7 +4,7 @@ import { AudioConfig, CompileConfig, Fiber, Movie, } from "../types"
 import { getCurrentTimeSubtitleText, } from "../utils"
 import { defaultSceneBackground, } from "../utils/config"
 import { AudioRender, } from "./audio"
-import { debounce, DebouncedFunc, merge, } from "lodash-es"
+import { merge, } from "lodash-es"
 import { Element, } from "./element"
 import LoadingImage from "../assets/loading.svg"
 import PauseImage from "../assets/pause.svg"
@@ -39,11 +39,7 @@ export class MovieRender {
     _backgroundAudio: AudioRender
     _dubAudio: AudioRender
     _videoElement: Element
-    _debounceSwitchScene: DebouncedFunc<() => void>
-    _duration: number
-    _sceneDuration: number
     _sceneBackgroundRect: Konva.Rect
-    _startTime: number
     constructor(options: Movie.Options) {
         this._options = options
         this._canvasScale = 1
@@ -146,24 +142,12 @@ export class MovieRender {
 
         this._loadingAnimation = new Konva.Animation(this.initLoadingAnimation.bind(this), this._animationLayer)
         this._mediaAnimation = new Konva.Animation(this.initMediaAnimation.bind(this), this._mediaLayer)
-        this._debounceSwitchScene = debounce(this.switchScene.bind(this), 100, {
-            leading: true,
-            trailing: false,
-        })
         this.initScale()
         this.initLayer()
         this.initVideoEvent()
         this.initLoading()
         this.initPause()
         this.initReplay()
-    }
-    initTimer() {
-        if (Date.now() - this._startTime >= this._duration) {
-            this._options.updateNextNode()
-        } else {
-            this.initSubtitle()
-            requestAnimationFrame(this.initTimer.bind(this))
-        }
     }
     initScale() {
         const { clientWidth, clientHeight, } = this._options.container
@@ -341,11 +325,6 @@ export class MovieRender {
         if (currentTime >= this._videoData.endTime) {
             // 是否要循环播放当前素材
         }
-    }
-    switchScene() {
-        this._backgroundAudio.pause()
-        this._videoTarget.pause()
-        this._options.updateNextNode()
     }
     initLoading() {
         this._loadingTarget.src = this._options.loadingImage || LoadingImage

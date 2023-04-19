@@ -5,5 +5,6 @@ export namespace timeControllerOptions {
         pause: () => void
         play: () => void
         stop?: () => void
+        updateNext?: () => void
     }
 }

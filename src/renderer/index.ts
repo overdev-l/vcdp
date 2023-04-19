@@ -17,27 +17,23 @@ export class Renderer {
             pauseImage: options.pauseImage,
             replayImage: options.replayImage,
             subtitleStyle: options.subtitleStyle,
-            updateNextNode: options.updateNextNode,
         })
         this._timeController = new TimeController({
             scenes: options.scenes,
             pause: this.moviePause.bind(this),
             play: this.movieStart.bind(this),
+            updateNext: options.updateNextNode.bind(this),
         })
     }
     public update(playFiberNode: Fiber.PlayFiberNode) {
-        this._movie._startTime = Date.now()
         this._movie.updateVideo(playFiberNode.video)
         this._movie.updateSubtitleSource(playFiberNode.subtitle)
         if (playFiberNode.dub) {
-            this._movie._duration = playFiberNode.dub.duration
             this._movie.updateDubbing([{
                 ...playFiberNode.dub,
                 loop: false,
                 mute: playFiberNode.dub.mute || false,
             },])
-        } else {
-            this._movie._duration = playFiberNode.video.duration
         }
     }
     public updateBackground(bgAudio: AudioConfig.Result[]) {

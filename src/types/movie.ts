@@ -10,7 +10,6 @@ export namespace Movie {
     pauseImage: string
     replayImage: string
     subtitleStyle: CompileConfig.TextStyle
-    updateNextNode: () => void
   }
   export interface VideoEvents {
     eventName: string
