@@ -6,14 +6,17 @@ const TabMenus: React.FC<Props> = (props: Props) => {
     return (
         <Tabs variant='soft-rounded' colorScheme='green'>
             <TabList>
+                <Tab>Playback Controls</Tab>
                 <Tab>Scene</Tab>
                 <Tab>Background Audio</Tab>
                 <Tab>Scene Background</Tab>
-                <Tab>Playback Controls</Tab>
                 <Tab>Elements</Tab>
             </TabList>
 
             <TabPanels>
+                <TabPanel>
+                    {<props.Broadcast play={props.play} pause={props.pause} replay={props.replay} />}
+                </TabPanel>
                 <TabPanel>
                     {<props.Scene data={props.SceneData} update={props.updateScene} />}
                 </TabPanel>
@@ -22,9 +25,6 @@ const TabMenus: React.FC<Props> = (props: Props) => {
                 </TabPanel>
                 <TabPanel>
                     {<props.SceneBg data={props.SceneBgData} update={props.updateSceneBackground} />}
-                </TabPanel>
-                <TabPanel>
-                    {<props.Broadcast play={props.play} pause={props.pause} replay={props.replay} />}
                 </TabPanel>
                 <TabPanel>
                     {<props.Element data={props.ElementData} update={props.updateElement} />}
