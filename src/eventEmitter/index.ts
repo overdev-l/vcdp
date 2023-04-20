@@ -29,14 +29,14 @@ export class EventEmitter {
             callbacks!.splice(index, 1)
         }
     }
-    emit(eventName: string, ...args: any[]) {
+    emit<T>(eventName: string, args: T) {
         if (!this._eventsMap.has(eventName)) {
             console.error(`事件${eventName}不存在`)
             return
         }
         const callbacks = this._eventsMap.get(eventName)
         callbacks!.forEach((callback) => {
-            callback(...args)
+            callback(args)
         })
     }
     once(eventName: string, callback: Function) {
