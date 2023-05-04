@@ -1,0 +1,83 @@
+{
+    "backgroundAudios": [
+        {
+            "source": "https://image.liuyongzhi.cn/video/background.mp3",
+            "startTime": 25000,
+            "endTime": 30000,
+            "loop": true,
+            "mute": false,
+            "duration": 5000,
+            "volume": 10
+        }
+    ],
+    "sceneBackground": {
+        "type": 2,
+        "source": "https://image.liuyongzhi.cn/video/bg1.jpg",
+        "alpha": 1
+    },
+    "scenes": [
+        {
+            "duration": 51000,
+            "subtitle": {
+                "source": "https://image.liuyongzhi.cn/video/video1subtitle.srt",
+                "style": {
+                    "fontSize": 100,
+                    "fontStyle": "italic bold",
+                    "align": "center",
+                    "stroke": "#7EB09B",
+                    "strokeWidth": 5,
+                    "fill": "#FFFFFF",
+                    "backgroundColor": "#000000",
+                    "x": 960,
+                    "y": 1080
+                }
+            },
+            "video": {
+                "mute": false,
+                "volume": 10,
+                "startTime": 0,
+                "endTime": 10000,
+                "duration": 10000,
+                "source": "https://image.liuyongzhi.cn/video/video1.mp4"
+            },
+            "dub": {
+                "source": "https://image.liuyongzhi.cn/video/description.mp3",
+                "startTime": 0,
+                "endTime": 51000,
+                "mute": false,
+                "volume": 100,
+                "duration": 51000
+            }
+        }
+    ],
+    "elements": [
+        {
+            "source": "三国演义",
+            "type": 0,
+            "style": {
+                "fontSize": 70,
+                "fontStyle": "italic bold",
+                "align": "center",
+                "fill": "#FFFFFF",
+                "stroke": "#38B2AC",
+                "strokeWidth": 50,
+                "fillAfterStrokeEnabled": true,
+                "hitStrokeWidth": 10,
+                "lineJoin": "round",
+                "x": 100,
+                "y": 10
+            }
+        },
+        {
+            "source": "https://image.liuyongzhi.cn/video/ai-draw.tokyo_en_.png",
+            "type": 1,
+            "style": {
+                "width": 200,
+                "height": 256,
+                "opacity": 0.5,
+                "x": 1920,
+                "y": 540
+            }
+        }
+    ]
+}

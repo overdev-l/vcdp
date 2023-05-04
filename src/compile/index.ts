@@ -110,8 +110,8 @@ class Compile {
     }
     async parseBackgroundAudio() {
         this._backgroundAudios = []
-        const bgAudio = this._movieData.backgroundAudios
-        for (let i = 0; i < bgAudio.length; i++) {
+        const bgAudio = this._movieData.backgroundAudios as CompileConfig.BackgroundAudio[]
+        for (let i = 0; i < bgAudio!.length; i++) {
             const { source, volume, mute, loop, startTime, endTime, } = bgAudio[i]
             const blobData = this._cache.get(source)
             let url = ""
@@ -138,7 +138,7 @@ class Compile {
     }
     async parseVideoElement() {
         this._videoElement = []
-        const elements = this._movieData.elements
+        const elements = this._movieData.elements as CompileConfig.VideoElement[]
         for (let i = 0; i < elements.length; i++) {
             if (elements[i].type === 1) {
                 // 图片logo

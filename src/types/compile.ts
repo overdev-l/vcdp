@@ -4,9 +4,9 @@ export namespace CompileConfig {
     firstCompileCallback: () => void
   }
   export interface MovieData {
-    backgroundAudios: BackgroundAudio[]
+    backgroundAudios?: BackgroundAudio[]
     scenes: Scene[]
-    elements: VideoElement[],
+    elements?: VideoElement[],
     sceneBackground?: SceneBackground
   }
   export interface BackgroundAudio {

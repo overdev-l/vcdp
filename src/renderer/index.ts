@@ -54,6 +54,9 @@ export class Renderer {
     public pause(){
         this._timeController.pause()
     }
+    public resize() {
+        this._movie.resize()
+    }
     private movieStart() {
         this._movie._backgroundAudio.play()
         this._movie._dubAudio.play()

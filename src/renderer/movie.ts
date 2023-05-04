@@ -149,6 +149,14 @@ export class MovieRender {
         this.initPause()
         this.initReplay()
     }
+    resize() {
+        this.initScale()
+        this.initLayer()
+        this.initVideoEvent()
+        this.initLoading()
+        this.initPause()
+        this.initReplay()
+    }
     initScale() {
         const { clientWidth, clientHeight, } = this._options.container
         const scaleX = clientWidth / this._options.videoWidth
@@ -214,7 +222,7 @@ export class MovieRender {
             )
         }
     }
-    
+
     initBackground(bgAudio: AudioConfig.Result[]) {
         this._backgroundAudio = new AudioRender(bgAudio)
     }

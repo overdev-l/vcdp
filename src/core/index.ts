@@ -67,12 +67,6 @@ class Core {
         }
     }
     /**
-     * 修改画布大小
-     */
-    public resize() {
-        //
-    }
-    /**
      * 获取元素
      * */
     public getElement(name: string) {
@@ -80,7 +74,7 @@ class Core {
     }
     /**
     * 播放函数
-    * @returns 
+    * @returns
     */
     public play() {
         const result = this._render._movie._animationLayer.findOne((element: Konva.Image) => element.name() === "done")
@@ -94,7 +88,7 @@ class Core {
     }
     /**
     * 暂停
-    * @returns 
+    * @returns
     */
     public pause() {
         this._render.pause()
@@ -103,7 +97,7 @@ class Core {
     }
     /**
     * 更新场景
-    * @returns 
+    * @returns
     */
     public update(options: CompileConfig.MovieData) {
         this._render._movie.dispose()
@@ -187,6 +181,9 @@ class Core {
     }
     public off(event: string, callback: Function) {
         this._eventEmitter.off(event, callback)
+    }
+    public resize() {
+        this._render.resize()
     }
 }
 

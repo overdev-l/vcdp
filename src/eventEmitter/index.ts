@@ -29,7 +29,7 @@ export class EventEmitter {
             callbacks!.splice(index, 1)
         }
     }
-    emit<T>(eventName: string, args: T) {
+    emit<T>(eventName: string, args?: T) {
         if (!this._eventsMap.has(eventName)) {
             console.error(`事件${eventName}不存在`)
             return
